@@ -51,3 +51,13 @@ def delete_device(name: str):
             readings.remove(device)
             return {"deleted": name}
     raise HTTPException(status_code=404, detail="No device called " + name)
+
+#task 3
+# first send: 201; second send: 201 (probe)
+# device count = 6 items 
+# first send: 200; second send: 200 (attic)
+# device count = 6 items and attic room cahnged to loft
+# first send: 200 (deleted fridge successfully); second send: 404 (no device caled fridge found)
+# device count = 5 items 
+
+
