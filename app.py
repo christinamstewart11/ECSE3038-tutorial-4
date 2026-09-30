@@ -31,6 +31,9 @@ def get_device(name: str):
 @app.post("/devices", status_code=201)
 def create_device(device: Device):
     new_device = device.model_dump()
+    for existing_device in readings:
+        if existing_device["name"] == new_device["name"]:
+            raise HTTPException(status_code=409, detail="A device called " + new_device["name"] + " already exists")
     readings.append(new_device)
     return new_device
 
@@ -59,5 +62,8 @@ def delete_device(name: str):
 # device count = 6 items and attic room cahnged to loft
 # first send: 200 (deleted fridge successfully); second send: 404 (no device caled fridge found)
 # device count = 5 items 
+
+#task 4
+# both 409 conflicts occured
 
 
